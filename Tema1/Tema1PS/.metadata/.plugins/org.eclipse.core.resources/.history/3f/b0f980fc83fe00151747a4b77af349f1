@@ -1,0 +1,79 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+import ro.utcluj.ps.tema1.Models.User;
+
+public class EmployeeForm extends JFrame implements ActionListener{
+	
+	private static final long serialVersionUID = 1L;
+	private User usr;
+	private JMenuBar menuBar;
+	private JMenu meniu;
+	private JMenuItem addTicket,logOut;
+	private JPanel employeePanel;
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	public EmployeeForm(User usr,String title){
+		super(title);
+		this.usr = usr;
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight =(int)screenSize.getHeight();
+		setSize(800,screenHeight);
+		
+		employeePanel = new JPanel();
+		getContentPane().add(employeePanel);
+		employeePanel.setLayout( null );
+		
+		employeePanel.setBounds(0,0,800,screenHeight);
+		
+		
+	
+		//MENIU
+		menuBar = new JMenuBar();
+				 
+		meniu = new JMenu("Menu");
+				
+		addTicket = new JMenuItem("Add Ticket");
+		addTicket.addActionListener(this);
+				
+		logOut = new JMenuItem("Log out");
+		logOut.addActionListener(this);
+				
+		meniu.add(addTicket);
+		meniu.addSeparator();
+		meniu.add(logOut);
+		
+		menuBar.add(meniu);
+		menuBar.setBounds(0,0,800,20);
+		 
+		
+		
+		employeePanel.add(menuBar);
+		this.add(employeePanel);
+		
+		show();
+	}
+	
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+}

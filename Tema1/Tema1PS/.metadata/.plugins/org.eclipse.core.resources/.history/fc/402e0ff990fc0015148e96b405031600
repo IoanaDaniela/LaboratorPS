@@ -1,0 +1,45 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+public class LoginForm extends JFrame{
+
+	private static final long serialVersionUID = 1L;
+	private JPanelWithBackground backgroundPanel = null;
+	
+	public LoginForm(String titlu){
+		super(titlu);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		int screenWidth = (int)screenSize.getWidth();
+		int screenHeight =(int)screenSize.getHeight();
+		setSize(800,screenHeight);
+		
+		
+		
+		try {
+			backgroundPanel = new JPanelWithBackground("back.jpeg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		//BACKGROUND PANEL
+		getContentPane().add(backgroundPanel);
+		backgroundPanel.setLayout( null );
+		
+		backgroundPanel.setBounds(0,0,800,screenHeight);
+		
+		
+		
+		
+		
+	}
+	
+
+}

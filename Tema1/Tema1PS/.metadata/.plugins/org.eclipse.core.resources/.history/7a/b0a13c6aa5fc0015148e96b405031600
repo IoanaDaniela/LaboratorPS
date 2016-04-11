@@ -1,0 +1,14 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import ro.utcluj.ps.tema1.Models.User;
+
+public class EmployeeForm {
+	private User usr;
+
+	public EmployeeForm(User usr){
+		this.usr = usr;
+	}
+	
+	
+	
+}

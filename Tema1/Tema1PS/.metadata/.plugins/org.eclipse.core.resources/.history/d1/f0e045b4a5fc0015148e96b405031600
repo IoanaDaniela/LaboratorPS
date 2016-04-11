@@ -1,0 +1,159 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import ro.utcluj.ps.tema1.BL.UserManager;
+import ro.utcluj.ps.tema1.Models.User;
+
+public class LoginForm extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	private JPanelWithBackground backgroundPanel = null;
+	private AdminForm adminPanel;
+	private EmployeeForm employeePanel;
+	
+	private User user;
+	
+	private JLabel usernameLabel, passwordLabel;
+	private TextField usernameTextField, passwordTextField;
+	private JButton signInButton;
+	
+	
+	public LoginForm(String titlu){
+		super(titlu);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		int screenWidth = (int)screenSize.getWidth();
+		int screenHeight =(int)screenSize.getHeight();
+		setSize(800,screenHeight);
+		
+		
+		
+		try {
+			backgroundPanel = new JPanelWithBackground("back.jpeg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		//GESTIUNE JPANEL
+		
+		employeePanel = new EmployeeForm(user);
+		adminPanel = new AdminForm(user);
+		
+		try {
+			backgroundPanel = new JPanelWithBackground("background4.jpeg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		getContentPane().add(adminPanel);
+		getContentPane().add(employeePanel);
+		getContentPane().add(backgroundPanel);
+		
+		
+		backgroundPanel.setLayout( null );	 
+		backgroundPanel.setBounds(0,0,screenWidth,screenHeight);
+		
+		studentPanel.setLayout( null );	 
+		studentPanel.setBounds(0,0,screenWidth,screenHeight);
+		
+		teacherPanel.setLayout( null );	 
+		teacherPanel.setBounds(0,0,screenWidth,screenHeight);
+		
+		adminPanel.setLayout( null );	 
+		adminPanel.setBounds(0,0,screenWidth,screenHeight);
+		
+		adminPanel.hide();
+		teacherPanel.hide();
+		studentPanel.hide();
+		backgroundPanel.show();
+		
+		
+		
+		//BACKGROUND PANEL
+		getContentPane().add(backgroundPanel);
+		backgroundPanel.setLayout( null );
+		
+		backgroundPanel.setBounds(0,0,800,screenHeight);
+	
+		usernameLabel = new JLabel("Username:");
+		usernameLabel.setFont(new Font(null,3,25));
+		usernameLabel.setBounds(10,10, 200, 50);
+		usernameLabel.setForeground(Color.RED);
+		
+		
+		usernameTextField = new TextField(40);
+		usernameTextField.setFont(new Font(null,3,25));
+		usernameTextField.setBounds(210, 10, 300, 50);
+	
+		
+		passwordLabel = new JLabel("Password:");
+		passwordLabel.setFont(new Font(null,3,25));
+		passwordLabel.setBounds(10,90,200,50);
+		passwordLabel.setForeground(Color.RED);
+
+		passwordTextField = new TextField(40);
+		passwordTextField.setFont(new Font(null,3,25));
+		passwordTextField.setBounds(210, 90, 300, 50);
+		passwordTextField.setEchoChar('*');
+		
+		signInButton = new JButton("LogIn");
+		signInButton.setFont(new Font(null,3,25));
+		signInButton.setBounds(10, 170, 150, 50);
+		signInButton.addActionListener(this);
+		
+		
+		backgroundPanel.add(usernameLabel);
+		backgroundPanel.add(usernameTextField);
+		backgroundPanel.add(passwordLabel);
+		backgroundPanel.add(passwordTextField);
+		backgroundPanel.add(signInButton);
+		
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
+		if(command.equals("LogIn")){
+			
+			String username = usernameTextField.getText();
+			String password = passwordTextField.getText();
+			
+			UserManager uM = new UserManager();
+            User utilizator = uM.login(username, password);
+			
+            if(utilizator == null){
+            	JOptionPane.showMessageDialog(null, "Username sau parola gresita!");
+            }else if (utilizator.getUsertype().equals("admin")){
+            	//ADMIN
+            	
+            }else{
+            	//EMPLOYEE
+            	
+            }
+            
+			
+			System.out.println("fsaf");
+		}
+	}
+	
+
+}

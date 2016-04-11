@@ -1,0 +1,125 @@
+package ro.utcluj.ps.tema1.DL;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public class ShowDAO {
+	private String url = "jdbc:mysql://localhost/ShowManagement";
+	private	String uid = "root";
+	private	String pw = "";
+	private Connection con;
+	
+	
+	public ShowDAO(){
+		init();
+	}
+	
+	
+	//initializam conexiunea la baza de date
+		private void init()
+		{
+			try {	
+				Class.forName("com.mysql.jdbc.Driver");
+			}
+			catch (java.lang.ClassNotFoundException e) {
+				System.err.println("ClassNotFoundException: " +e);
+			}
+
+			con = null;
+			try {
+				con = DriverManager.getConnection(url, uid, pw);
+			}
+			catch (SQLException ex) {
+				System.err.println("SQLException: " + ex);
+				System.exit(1);
+			}	
+		}
+	
+		
+
+		
+		private void doUpdate(String updateStr)
+		{
+			try {
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate(updateStr);
+				System.out.println("Operation success!");
+			}
+			catch (SQLException e)
+			{	System.out.println("Operation failed: "+e);
+			}
+		}
+
+
+		public void addShow(String showName, String regia, String distributia,
+				String dataPremierei, String bilete) {
+			String sqlSt;
+			sqlSt = "INSERT INTO spectacol (showName,regia, distributia,data_premierei,tickets,availabletickets) VALUES ('"+ showName +"','"+ regia +"','"+ distributia +"','"+ dataPremierei +"','"+ bilete +"','"+ bilete +"');";
+			System.out.println(sqlSt);
+			doUpdate(sqlSt);
+			
+		}
+	
+
+
+	//lista spectacole
+	public Object[][] getShowList(){
+		String sqlSt;
+		sqlSt = "SELECT * FROM spectacol;"; 
+		System.out.println(sqlSt);
+		Object rez[][] = new Object[100][6];
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rst = stmt.executeQuery(sqlSt);
+		
+			int i=0;
+			while (rst.next())
+			{
+				
+				for (int j=0;j<=5;j++){
+					Object obj = rst.getObject(j+2);
+					if (obj != null){
+						if (j == 3){
+							rez[i][j] = obj.toString().substring(0, 10);
+						}else{
+							rez[i][j] = obj.toString();
+						}
+					}
+					
+				 }
+				System.out.println(rez[i][0]);
+				i++;
+				
+			}	
+			rst.close();
+		}catch (SQLException ex) {
+			System.err.println("SQLException: " + ex);
+		}
+		return rez;
+		
+	}
+	
+	
+	
+	public void deleteShow(String showName){
+		String sqlSt;
+		sqlSt = "DELETE FROM spectacol WHERE showName = '"+showName+"';";
+		System.out.println(sqlSt);
+		doUpdate(sqlSt);
+	}
+
+
+	public void updateShow(String show,String showName, String regia, String distributia, String dataPremierei, String bilete) {
+		String sqlSt;
+		sqlSt = "UPDATE spectacol SET showName='"+showName+"',regia = '"+ regia +"',distributia = '"+ distributia+"', data_premierei = '"+ dataPremierei +"', tickets ='"+bilete+"' WHERE showName ='"+show+"';";
+		System.out.println(sqlSt);
+		doUpdate(sqlSt);
+	}
+	
+	
+	
+}

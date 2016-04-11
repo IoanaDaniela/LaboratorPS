@@ -1,0 +1,73 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import java.awt.Choice;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import ro.utcluj.ps.tema1.BL.ShowManager;
+
+
+public class EmployeeForm extends JFrame implements ActionListener{
+	
+	private static final long serialVersionUID = 1L;
+
+	private JLabel chooseShowLabel;
+	private Choice showChoice;
+	private JPanel employeePanel;
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	public EmployeeForm(String title){
+		super(title);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenHeight =(int)screenSize.getHeight();
+		setSize(800,screenHeight);
+		
+		employeePanel = new JPanel(null);
+		employeePanel.setLayout( null );
+		employeePanel.setBounds(0,0,800,screenHeight);
+		employeePanel.setBackground(new Color(130,130,60));
+		getContentPane().add(employeePanel);
+		
+		
+		chooseShowLabel = new JLabel("Choose Show:");
+		chooseShowLabel.setFont(new Font(null,3,25));
+		chooseShowLabel.setBounds(20,90,200,50);
+		chooseShowLabel.setForeground(Color.WHITE);
+		
+		
+		showChoice = new Choice();
+		ShowManager sM = new ShowManager();
+		Object[][] spectacole = sM.getShowsList();
+		int i=0;
+		while(spectacole[i][0]!=null){
+			showChoice.add(spectacole[i][0].toString());
+			i++;
+		}
+		showChoice.setBounds(20, 120, 600, 30);
+	
+		employeePanel.add(showChoice);
+		
+		show();
+	}
+	
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+}

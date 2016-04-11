@@ -1,0 +1,47 @@
+package ro.utcluj.ps.tema1.BL;
+
+import ro.utcluj.ps.tema1.DL.ShowDAO;
+import ro.utcluj.ps.tema1.DL.TicketDAO;
+
+public class ShowManager {
+
+	
+	
+	
+	
+	public void addShow(String showName, String regia, String distributia, String dataPremierei, String bilete){
+		ShowDAO connection = new ShowDAO();
+		connection.addShow(showName, regia,distributia,dataPremierei,bilete);
+	}
+	
+	public Object[][] getShowsList(){
+		ShowDAO connection = new ShowDAO();
+		return connection.getShowList();
+	}
+	
+	public void deleteShow(String show){
+		ShowDAO connection = new ShowDAO();
+		connection.deleteShow(show);
+	}
+	
+	public void updateShow(String show,String showName, String regia, String distributia, String dataPremierei, String bilete){
+		ShowDAO connection = new ShowDAO();
+		connection.updateShow(show, showName, regia, distributia, dataPremierei, bilete);
+	}
+	
+	public String[] getTicketsList(String show){
+		TicketDAO connection = new TicketDAO();
+		return connection.getTicketsList(show);
+	}
+
+	public boolean checkPlace(String showId, String row, String place) {
+		TicketDAO connection = new TicketDAO();
+		return connection.checkPlace(showId,row,place);
+	}
+	
+	public void addTicket(String showId, String row, String place) {
+		TicketDAO connection = new TicketDAO();
+		connection.addTicket(showId,row,place);
+	}
+	
+}

@@ -1,0 +1,85 @@
+package ro.utcluj.ps.tema1.GUI;
+
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class LoginForm extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
+	private JPanelWithBackground backgroundPanel = null;
+	
+	private JLabel usernameLabel, passwordLabel;
+	private TextField usernameTextField, passwordTextField;
+	private JButton signInButton;
+	
+	
+	public LoginForm(String titlu){
+		super(titlu);
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//		int screenWidth = (int)screenSize.getWidth();
+		int screenHeight =(int)screenSize.getHeight();
+		setSize(800,screenHeight);
+		
+		
+		
+		try {
+			backgroundPanel = new JPanelWithBackground("back.jpeg");
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		//BACKGROUND PANEL
+		getContentPane().add(backgroundPanel);
+		backgroundPanel.setLayout( null );
+		
+		backgroundPanel.setBounds(0,0,800,screenHeight);
+	
+		usernameLabel = new JLabel("Username:");
+		usernameLabel.setFont(new Font(null,3,25));
+		usernameLabel.setBounds(10,10, 200, 50);
+		
+		usernameTextField = new TextField(40);
+		usernameTextField.setFont(new Font(null,3,25));
+		usernameTextField.setBounds(210, 10, 300, 50);
+	
+		
+		passwordLabel = new JLabel("Password:");
+		passwordLabel.setFont(new Font(null,3,25));
+		passwordLabel.setBounds(10,90,200,50);
+
+		passwordTextField = new TextField(40);
+		passwordTextField.setFont(new Font(null,3,25));
+		passwordTextField.setBounds(210, 90, 300, 50);
+		passwordTextField.setEchoChar('*');
+		
+		signInButton = new JButton("LogIn");
+		signInButton.setFont(new Font(null,3,25));
+		signInButton.setBounds(260, 210, 150, 50);
+		signInButton.addActionListener(this);
+		
+		
+		
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

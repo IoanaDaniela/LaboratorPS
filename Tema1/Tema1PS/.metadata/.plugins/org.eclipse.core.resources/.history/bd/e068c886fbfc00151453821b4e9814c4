@@ -1,0 +1,22 @@
+package ro.utcluj.ps.tema1.BL;
+
+import ro.utcluj.ps.tema1.DL.UserDAO;
+import ro.utcluj.ps.tema1.Models.User;
+
+public class UserManager {
+	
+	
+	public UserManager(){
+		
+	}
+	
+	
+	public User login(String username, String password){
+         UserDAO connection = new UserDAO();
+         return connection.getUser(username, password);
+    }
+	
+	
+	
+	
+}
