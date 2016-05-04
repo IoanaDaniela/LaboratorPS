@@ -1,0 +1,54 @@
+﻿@model MVCTema2PS.Models.Ticket
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Ticket</legend>
+
+        @Html.HiddenFor(model => model.TicketID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Row)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Row)
+            @Html.ValidationMessageFor(model => model.Row)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SeatNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SeatNumber)
+            @Html.ValidationMessageFor(model => model.SeatNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShowId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShowId)
+            @Html.ValidationMessageFor(model => model.ShowId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

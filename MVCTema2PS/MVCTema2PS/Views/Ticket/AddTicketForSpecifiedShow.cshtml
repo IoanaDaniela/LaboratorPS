@@ -1,0 +1,58 @@
+﻿@model MVCTema2PS.Models.Ticket
+
+@{
+    ViewBag.Title = "AddTicketForSpecifiedShow";
+}
+
+<h2>AddTicketForSpecifiedShow</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (@ViewBag.AvailableTickets != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.AvailableTickets
+        </div>
+    }
+    if (@ViewBag.BiletExistent != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.BiletExistent
+        </div>
+    }
+    <fieldset>
+        <legend>Ticket</legend>
+
+        @Html.HiddenFor(model => model.TicketID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Row)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Row)
+            @Html.ValidationMessageFor(model => model.Row)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SeatNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SeatNumber)
+            @Html.ValidationMessageFor(model => model.SeatNumber)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Shows List", "EmployeeAfterLogin", "User")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

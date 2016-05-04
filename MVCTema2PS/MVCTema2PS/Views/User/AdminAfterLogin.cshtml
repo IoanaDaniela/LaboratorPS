@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "AdminAfterLogin";
+}
+
+@* <h2>AdminAfterLogin</h2> *@
+@if (Session["LoggedUserFirstname"] != null && Session["LoggedUserLastname"] != null)
+{
+    <text>
+        Welcome @Session["LoggedUserFirstname"].ToString() @Session["LoggedUserLastname"].ToString(), you are logged as administrator!
+    </text>
+    
+    <ul>
+        <li>@Html.ActionLink("Add Employee", "Create", "User")</li>
+        <li>@Html.ActionLink("Shows List", "Index", "Show")</li>
+        
+    </ul>
+}

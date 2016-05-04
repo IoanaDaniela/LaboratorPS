@@ -1,0 +1,76 @@
+﻿@model MVCTema2PS.Models.Show
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Show</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShowName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShowName)
+            @Html.ValidationMessageFor(model => model.ShowName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Director)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Director)
+            @Html.ValidationMessageFor(model => model.Director)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Distribution)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Distribution)
+            @Html.ValidationMessageFor(model => model.Distribution)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReleaseDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReleaseDate)
+            @Html.ValidationMessageFor(model => model.ReleaseDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tickets)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tickets)
+            @Html.ValidationMessageFor(model => model.Tickets)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AvailableTickets)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AvailableTickets)
+            @Html.ValidationMessageFor(model => model.AvailableTickets)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
