@@ -1,0 +1,36 @@
+﻿@model MVCTema2PS.Models.Ticket
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Ticket</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Row)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Row)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SeatNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SeatNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ShowId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShowId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TicketID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

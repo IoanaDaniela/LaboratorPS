@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MVCTema2PS.Models.Ticket>
+
+@{
+    ViewBag.Title = "TicketsListForSpecifiedShow";
+}
+
+<h2>TicketsListForSpecifiedShow</h2>
+
+
+@if (@ViewBag.NoTickets != null)
+{
+    <div style="border:1px solid red">
+        @ViewBag.NoTickets
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Back to Shows List", "EmployeeAfterLogin", "User")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Row)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Row)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TicketID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TicketID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TicketID })
+        </td>
+    </tr>
+}
+
+</table>
+

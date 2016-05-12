@@ -1,0 +1,57 @@
+﻿@model MVCTema2PS.Models.Show
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Show</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ShowName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShowName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Director)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Director)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Distribution)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Distribution)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReleaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReleaseDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tickets)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AvailableTickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AvailableTickets)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ShowID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

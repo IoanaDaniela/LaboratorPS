@@ -1,0 +1,61 @@
+﻿@model MVCTema2PS.Models.Show
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Show</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ShowName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ShowName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Director)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Director)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Distribution)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Distribution)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReleaseDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReleaseDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tickets)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AvailableTickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AvailableTickets)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
