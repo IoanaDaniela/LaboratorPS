@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HotelManager.Models.Booking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckOut)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.BookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.BookingId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "AdminAfterLogin";
+}
+
+@if (Session["LoggedUserName"] != null)
+{
+    <text>
+        Welcome @Session["LoggedUserName"].ToString() , you are logged as administrator!
+    </text>
+
+    
+    <ul id="menu">
+        <li>@Html.ActionLink("Booking Report", "BookingsReport","Booking",null,null) </li>
+        <li>@Html.ActionLink("Add User", "Register") </li>
+        <li>@Html.ActionLink("Users List", "UsersList")</li>
+        <li>@Html.ActionLink("Rooms List","Index","Room",null,null)</li>
+
+    </ul>
+    
+       
+    
+}

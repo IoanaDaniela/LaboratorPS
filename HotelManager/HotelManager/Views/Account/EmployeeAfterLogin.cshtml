@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "EmployeeAfterLogin";
+}
+
+@if (Session["LoggedUserName"] != null)
+{
+    <text>
+        Welcome @Session["LoggedUserName"].ToString() , you are logged as employee!
+    </text>
+
+    <ul id="menu">
+        <li>@Html.ActionLink("Add Booking", "Create", "Client") </li> 
+        <li>@Html.ActionLink("Bookings List", "BookingList", "Booking")</li>
+        <li>@Html.ActionLink("Clients List", "Index", "Client", null, null)</li>
+    </ul>
+
+
+}

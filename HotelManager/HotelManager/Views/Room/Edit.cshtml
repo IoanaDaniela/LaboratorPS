@@ -1,0 +1,48 @@
+﻿@model HotelManager.Models.Room
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Room</legend>
+
+        @Html.HiddenFor(model => model.RoomId)
+        @Html.HiddenFor(model => model.Type)
+        @Html.HiddenFor(model => model.RoomNumber)
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.RoomNumber):
+            @Html.DisplayFor(model => model.RoomNumber)
+        </div>
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Type):
+            @Html.DisplayFor(model => model.Type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Rate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Rate)
+            @Html.ValidationMessageFor(model => model.Rate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

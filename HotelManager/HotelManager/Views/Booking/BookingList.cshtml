@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HotelManager.Models.BookingDetails>
+
+@{
+    ViewBag.Title = "BookingList";
+}
+
+<h2>BookingList</h2>
+
+<p>
+    @Html.ActionLink("Add New", "Create","Client",null,null)
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.client.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.client.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.booking.CheckIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.booking.CheckOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.client.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.client.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.booking.CheckIn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.booking.CheckOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalPrice)
+        </td>
+        <td>
+            @Html.ActionLink("ClientDetails", "Details", "Client", new { id= item.client.ClientId},null) |
+            @Html.ActionLink("Booking Details", "DetailsForSpecifiedBooking", new { id = item.booking.BookingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.booking.BookingId })
+        </td>
+    </tr>
+}
+
+</table>

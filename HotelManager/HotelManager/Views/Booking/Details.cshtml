@@ -1,0 +1,36 @@
+﻿@model HotelManager.Models.Booking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Booking</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClientId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClientId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckIn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckIn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CheckOut)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CheckOut)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.BookingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

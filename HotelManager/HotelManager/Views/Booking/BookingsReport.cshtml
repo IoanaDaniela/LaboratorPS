@@ -1,0 +1,38 @@
+﻿@model HotelManager.Models.Booking
+
+@{
+    ViewBag.Title = "BookingsReport";
+}
+
+<h2>BookingsReport</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Booking</legend>
+
+    
+        <p>From:</p>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CheckIn)
+            @Html.ValidationMessageFor(model => model.CheckIn)
+        </div>
+        <p>To:</p>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CheckOut)
+            @Html.ValidationMessageFor(model => model.CheckOut)
+        </div>
+
+        <p>
+            <input type="submit" name="XMLReportButton" value="XML Report" />
+            <input type="submit" name="CSVReportButton" value="CSV Report" />
+        </p>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

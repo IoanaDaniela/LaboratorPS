@@ -1,0 +1,92 @@
+﻿@model HotelManager.Models.BookingDetails
+
+@{
+    ViewBag.Title = "DetailsForSpecifiedBooking";
+}
+
+<h2>DetailsForSpecifiedBooking</h2>
+
+<fieldset>
+    <legend>BookingDetails</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.client.FirstName) :  @Html.DisplayFor(model => model.client.FirstName)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.client.LastName) :  @Html.DisplayFor(model => model.client.LastName)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.client.Email) :  @Html.DisplayFor(model => model.client.Email)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.client.MobileNumber) :  @Html.DisplayFor(model => model.client.MobileNumber)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.booking.CheckIn) :  @Html.DisplayFor(model => model.booking.CheckIn)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.booking.CheckOut) :  @Html.DisplayFor(model => model.booking.CheckOut)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.totalPrice) :  @Html.DisplayFor(model => model.totalPrice)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.rooms) :  
+    </div>
+</fieldset>
+
+
+
+
+@foreach (var item in Model.rooms)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+    </tr>
+    <br>
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+   
+        @Html.HiddenFor(model => model.client.ClientId)
+        @Html.HiddenFor(model => model.client.Email)
+        @Html.HiddenFor(model => model.client.FirstName)
+        @Html.HiddenFor(model => model.client.LastName)
+        @Html.HiddenFor(model => model.client.MobileNumber)
+
+        @Html.HiddenFor(model => model.booking.BookingId)
+        @Html.HiddenFor(model => model.booking.ClientId)
+        @Html.HiddenFor(model => model.booking.CheckIn)
+        @Html.HiddenFor(model => model.booking.CheckOut)
+
+        @Html.HiddenFor(model => model.totalPrice)
+
+        <p>
+            <input type="submit" name="PDFInvoiceButton" value="PDF Invoice" />
+            <input type="submit" name="TXTInvoiceButton" value="TXT Invoice" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "BookingList")
+</p>
